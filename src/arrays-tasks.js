@@ -71,8 +71,13 @@ function findElement(arr, value) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  let counter = 0;
+  arr.reduce((current, currentValue) => {
+    counter += currentValue === item ? 1 : 0;
+    return current;
+  }, 0);
+  return counter;
 }
 
 /**
@@ -567,8 +572,27 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const numbersArray = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  return arr
+    .map((x) => {
+      return numbersArray.indexOf(x.toLowerCase());
+    })
+    .sort((a, b) => a - b)
+    .map((y) => {
+      return numbersArray[numbersArray.findIndex((_, index) => index === y)];
+    });
 }
 
 /**
